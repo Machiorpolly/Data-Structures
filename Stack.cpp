@@ -39,7 +39,8 @@ void programLoop(Stack& S) {
 		std::cout << "Enter the operation you want to perform: \n";
 		std::cout << "1. Push\n2. Pop\n3. Exit\n";
 
-		int op {}, value{};
+		int op {};
+		[[maybe_unused]] int value{};
 		std::cin >> op;
 
 		switch (op) {
@@ -66,10 +67,12 @@ void programLoop(Stack& S) {
 
 void initStack() {
 	std::cout << "Create a stack of any size (<=100)!\n";
-	std::cout << "Enter the stack size: ";
-
+	
 	int stack_size {};
-	std::cin >> stack_size;
+	do {
+		std::cout << "Enter a valid stack size: ";
+		std::cin >> stack_size;
+	} while (stack_size > 100 || stack_size <= 0); 
 
 	Stack S {stack_size, {}};
 	std::cout << "Stack Initialized!\n";
